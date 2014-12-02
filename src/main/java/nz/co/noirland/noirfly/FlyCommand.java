@@ -14,7 +14,7 @@ public class FlyCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String alias, String[] args) {
-        if(!(sender instanceof Player)) {
+        if (!(sender instanceof Player)) {
             sender.sendMessage(ChatColor.RED + "Only players may use this command.");
             return true;
         }
@@ -23,16 +23,16 @@ public class FlyCommand implements CommandExecutor {
         UUID uuid = player.getUniqueId();
 
         FlyType type;
-        if(player.hasPermission(NoirFly.PERMAFLY_PERM)) {
+        if (player.hasPermission(NoirFly.PERMAFLY_PERM)) {
             type = FlyType.PERMANENT;
-        } else if(player.hasPermission(NoirFly.FLY_PERM)) {
+        } else if (player.hasPermission(NoirFly.FLY_PERM)) {
             type = FlyType.COMMAND;
         } else {
             player.sendMessage(ChatColor.RED + "You do not have permission to run this command.");
             return true;
         }
-        if(plugin.isFlying(uuid)) {
-            if(plugin.getFlyType(uuid) == FlyType.COMMAND || plugin.getFlyType(uuid) == FlyType.PERMANENT) {
+        if (plugin.isFlying(uuid)) {
+            if (plugin.getFlyType(uuid) == FlyType.COMMAND || plugin.getFlyType(uuid) == FlyType.PERMANENT) {
                 plugin.stopFly(uuid);
             } else {
                 player.sendMessage(ChatColor.GOLD + "You cannot disable fly right now.");

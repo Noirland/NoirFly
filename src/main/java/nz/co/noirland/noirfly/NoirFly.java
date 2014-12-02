@@ -52,9 +52,9 @@ public class NoirFly extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        for(UUID player : flying.keySet()) {
+        for (UUID player : flying.keySet()) {
             Player p = Util.player(player).getPlayer();
-            if(p == null) continue;
+            if (p == null) continue;
             p.setAllowFlight(false);
             flying.remove(p.getUniqueId());
             xpHandler.resetPlayerXP(p);
@@ -65,16 +65,16 @@ public class NoirFly extends JavaPlugin {
     public boolean startFly(Player player, FlyType type) {
         UUID uuid = player.getUniqueId();
 
-        if(isFlying(uuid) || player.getAllowFlight()) { // player is already flying
+        if (isFlying(uuid) || player.getAllowFlight()) { // player is already flying
             player.sendMessage(ChatColor.GOLD + "You're already flying!");
             return false;
         }
 
-        if(cooldowns.containsKey(player.getUniqueId())) {
+        if (cooldowns.containsKey(player.getUniqueId())) {
             long now = System.currentTimeMillis();
             CooldownData data = cooldowns.get(uuid);
             long diff = now - data.time - TimeUnit.SECONDS.toMillis(data.type.getCooldown());
-            if(diff < 0) { // Still has time remaining
+            if (diff < 0) { // Still has time remaining
                 player.sendMessage(ChatColor.GOLD + "You must wait " + TimeUnit.MILLISECONDS.toSeconds(Math.abs(diff)) + " seconds before flying.");
                 return false;
             }
@@ -84,7 +84,7 @@ public class NoirFly extends JavaPlugin {
         XPTimer timer = null;
         StopFlyTask task = null;
 
-        if(type.isPermanent()) {
+        if (type.isPermanent()) {
             player.sendMessage(ChatColor.GOLD + "You can now fly permanently!");
         } else {
             player.sendMessage(ChatColor.GOLD + "You can now fly for " + type.getTime() + " seconds!");
@@ -98,17 +98,17 @@ public class NoirFly extends JavaPlugin {
     }
 
     public void stopFly(UUID player) {
-        if(!isFlying(player)) return;
-        if(flying.get(player).type.getCooldown() > 0) {
+        if (!isFlying(player)) return;
+        if (flying.get(player).type.getCooldown() > 0) {
             cooldowns.put(player, new CooldownData(System.currentTimeMillis(), flying.get(player).type));
         }
 
         FlyData data = flying.get(player);
         data.stopTask.cancel();
-        if(data.timer != null) data.timer.cancel();
+        if (data.timer != null) data.timer.cancel();
         flying.remove(player);
 
-        if(Util.player(player).isOnline()) {
+        if (Util.player(player).isOnline()) {
             Player p = Util.player(player).getPlayer();
             p.setAllowFlight(false);
             p.sendMessage(ChatColor.GOLD + "You can no longer fly.");

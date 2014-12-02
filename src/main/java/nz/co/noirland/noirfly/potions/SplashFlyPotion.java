@@ -1,6 +1,5 @@
 package nz.co.noirland.noirfly.potions;
 
-import nz.co.noirland.noirfly.potions.FlyPotion;
 import org.bukkit.ChatColor;
 
 import java.util.ArrayList;

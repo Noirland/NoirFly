@@ -9,7 +9,7 @@ public class FlyConfig extends Config {
     private static FlyConfig inst;
 
     public static FlyConfig inst() {
-        if(inst == null) {
+        if (inst == null) {
             inst = new FlyConfig();
         }
         return inst;
