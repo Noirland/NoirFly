@@ -1,0 +1,27 @@
+author: ZephireNZ
+database: false
+main: nz.co.noirland.noirfly.NoirFly
+name: NoirFly
+startup: postworld
+version: ${version}
+depend: [ZephCore]
+softdepend: [ProtocolLib]
+permissions:
+  noirfly.fly:
+    description: "Ability to fly temporarily."
+    default: false
+  noirfly.permafly:
+    description: "Ability to fly permanently."
+    default: op
+  flypotion.give:
+    description: Allows giving potions.
+    default: op
+commands:
+  fly:
+    description: Fly temporarily.
+    usage: "/<command>"
+  flypotion:
+      description: Give a fly potion to a player.
+      usage: |
+          Usage:
+          /<command> [player] (splash) (amount)

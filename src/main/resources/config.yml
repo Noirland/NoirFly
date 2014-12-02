@@ -1,0 +1,11 @@
+command:
+  fly-time: 30
+  cooldown: 10
+permanent:
+  cooldown: 10
+potion:
+  fly-time: 60
+  cooldown: 0
+splash-potion:
+  fly-time: 120
+  cooldown: 0
