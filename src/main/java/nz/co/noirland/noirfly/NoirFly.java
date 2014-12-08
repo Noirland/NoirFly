@@ -104,8 +104,8 @@ public class NoirFly extends JavaPlugin {
         }
 
         FlyData data = flying.get(player);
-        data.stopTask.cancel();
         if (data.timer != null) data.timer.cancel();
+        if (data.stopTask != null) data.stopTask.cancel();
         flying.remove(player);
 
         if (Util.player(player).isOnline()) {
