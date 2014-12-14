@@ -6,7 +6,7 @@
 
     <groupId>nz.co.noirland</groupId>
     <artifactId>noirfly</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <name>NoirFly</name>
 
     <repositories>
@@ -39,7 +39,7 @@
         <dependency>
             <groupId>nz.co.noirland</groupId>
             <artifactId>zephcore</artifactId>
-            <version>3.0</version>
+            <version>3.1</version>
         </dependency>
     </dependencies>
 

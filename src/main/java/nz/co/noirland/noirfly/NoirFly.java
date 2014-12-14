@@ -112,7 +112,7 @@ public class NoirFly extends JavaPlugin {
             Player p = Util.player(player).getPlayer();
             p.setAllowFlight(false);
             p.sendMessage(ChatColor.GOLD + "You can no longer fly.");
-            new CheckFallingTask(player).start();
+            Util.cancelFall(p);
         }
     }
 
