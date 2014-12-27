@@ -6,7 +6,7 @@
 
     <groupId>nz.co.noirland</groupId>
     <artifactId>noirfly</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <name>NoirFly</name>
 
     <repositories>

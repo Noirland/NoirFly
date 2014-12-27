@@ -4,7 +4,6 @@ import nz.co.noirland.noirfly.potions.FlyPotionsCommand;
 import nz.co.noirland.noirfly.potions.PotionsListener;
 import nz.co.noirland.noirfly.xpbar.XPHandler;
 import nz.co.noirland.noirfly.xpbar.XPTimer;
-import nz.co.noirland.zephcore.CheckFallingTask;
 import nz.co.noirland.zephcore.Debug;
 import nz.co.noirland.zephcore.Util;
 import org.bukkit.ChatColor;
@@ -13,6 +12,7 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
@@ -52,11 +52,12 @@ public class NoirFly extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        for (UUID player : flying.keySet()) {
-            Player p = Util.player(player).getPlayer();
+        Iterator<UUID> it = flying.keySet().iterator();
+        while (it.hasNext()) {
+            Player p = Util.player(it.next()).getPlayer();
             if (p == null) continue;
             p.setAllowFlight(false);
-            flying.remove(p.getUniqueId());
+            it.remove();
             xpHandler.resetPlayerXP(p);
             p.sendMessage(ChatColor.GOLD + "You can no longer fly.");
         }
